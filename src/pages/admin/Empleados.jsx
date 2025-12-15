@@ -8,6 +8,7 @@ import Loader from "../../components/UI/Loader";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function Empleados() {
   const [empleados, setEmpleados] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -108,7 +109,8 @@ export default function Empleados() {
             <div className="flex flex-col items-center">
               <img
                 src={
-                  selected.fotoUrl ||"/default-avatar.png"
+                  selected.fotoUrl ? `${API_BASE_URL}/uploads/${selected.fotoUrl.split('/').pop()}` // Asume que el backend envia la URL completa, pero toma solo el nombre
+                        : "/default-avatar.png"
                 }
                 alt={selected.nombre}
                 className="w-44 h-44 object-cover rounded-xl border shadow-md"
