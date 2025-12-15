@@ -3,8 +3,8 @@ import { Routes, Route } from "react-router-dom";
 
 /* LAYOUTS */
 // Asume que estos existen en tu proyecto
-import PublicLayout from "../layouts/PublicLayout"; 
-import AdminLayout from "../layouts/AdminLayout"; 
+import PublicLayout from "../layout/PublicLayout"; 
+import AdminLayout from "../layout/AdminLayout"; 
 
 /* AUTH COMPONENTS */
 import AdminAuth from "../pages/admin/AdminAuth";
