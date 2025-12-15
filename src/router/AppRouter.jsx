@@ -56,7 +56,7 @@ export default function AppRouter() {
      
 
       {/* ---------------------- ADMIN – PRIVATE ROUTES ---------------------- */}
-      <Route element={<AdminLayout />}>
+      <Route path="/admin" element={<AdminLayout />}>
         
         <Route
           path="dashboard"
