@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function HeaderJefe() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -13,7 +14,7 @@ export default function HeaderJefe() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const res = await axios.get("http://localhost:4000/api/auth/me", {
+        const res = await axios.get(`${API_BASE_URL}/api/auth/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -58,7 +59,7 @@ export default function HeaderJefe() {
       if (!token || !user?._id) return;
 
       await axios.delete(
-        `http://localhost:4000/api/admin/users/${user._id}`,
+        `${API_BASE_URL}/api/admin/users/${user._id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,7 +89,7 @@ export default function HeaderJefe() {
   };
 
   const fotoUrl = user?.foto
-    ? `http://localhost:4000/uploads/${user.foto}`
+    ? `${API_BASE_URL}/uploads/${user.foto}`
     : null; // 👈 sin default
 
   return (

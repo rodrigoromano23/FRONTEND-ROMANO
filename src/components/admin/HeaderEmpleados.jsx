@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function HeaderEmpleados() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -32,6 +33,8 @@ export default function HeaderEmpleados() {
 
   // FOTO: solo la que viene de Mongo, sin default
   const fotoUrl = user?.fotoUrl;
+  
+  
 
   return (
     <header className="w-full bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 shadow-md p-4 flex justify-between items-center border-b border-purple-200">

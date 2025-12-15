@@ -3,6 +3,7 @@ import axios from "axios";
 import PieSenso from "../../components/charts/PieSenso";
 import BarSenso from "../../components/charts/BarSenso";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function SensoModal({ onClose }) {
   const [estadisticas, setEstadisticas] = useState(null);
   const [comparativa, setComparativa] = useState([]);
@@ -10,8 +11,8 @@ export default function SensoModal({ onClose }) {
   useEffect(() => {
     const fetchData = async () => {
       const [est, comp] = await Promise.all([
-        axios.get("http://localhost:4000/api/senso/estadisticas"),
-        axios.get("http://localhost:4000/api/senso/comparativa"),
+        axios.get(`${API_BASE_URL}/api/senso/estadisticas`), 
+        axios.get(`${API_BASE_URL}/api/senso/comparativa`),
       ]);
 
       setEstadisticas(est.data);
