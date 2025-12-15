@@ -18,7 +18,7 @@ import axios from "axios";
    URL DEL BACKEND (RENDER)
 ================================ */
 const api = axios.create({
-  baseURL: "https://TU-BACKEND.onrender.com/api",
+  baseURL: "https://nombre-backend.onrender.com",
 });
 
 /* ================================
