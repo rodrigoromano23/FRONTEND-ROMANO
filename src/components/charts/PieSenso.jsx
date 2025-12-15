@@ -19,9 +19,13 @@ export default function SensoFormModal() {
   useEffect(() => {
     const fetchSensoData = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/api/senso"); // Aquí obtenemos todos los registros
-        const data = response.data || [];
-        setSensoData(data);
+            const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
+            
+            // Usar la URL base corregida
+            const response = await axios.get(`${API_BASE_URL}/api/senso`); 
+            // ----------------------------------------------------
+            
+            const data = response.data || [];
 
         // Si tienes datos, puedes seleccionar el primer año
         if (data.length > 0) {

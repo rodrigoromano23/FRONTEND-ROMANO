@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import CarruselPublico from "../../components/Editor/CarruselPublico"; // <-- Importar el carrusel animado
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function QuienesSomos() {
   const [publicaciones, setPublicaciones] = useState([]);
 
@@ -13,7 +14,7 @@ export default function QuienesSomos() {
       console.log("📡 Solicitando sección: quienes-somos");
 
       try {
-        const res = await fetch("http://localhost:4000/api/editor/section/quienes-somos");
+        const res = await fetch(`${API_BASE_URL}/api/editor/section/quienes-somos`);
 
         console.log("🔎 Status:", res.status);
 

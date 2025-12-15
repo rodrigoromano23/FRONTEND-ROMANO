@@ -18,11 +18,13 @@ export default function EditorPublicacion() {
       seccion
     };
 
-    await fetch("http://localhost:3000/publicaciones", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
+    const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
+
+    await fetch(`${API_BASE_URL}/publicaciones`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
 
     alert("Publicación subida ✔️");
   };

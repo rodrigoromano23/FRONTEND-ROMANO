@@ -25,15 +25,17 @@ const EditorTexto = () => {
     setIsPublishing(true);
 
     try {
-      const res = await fetch("http://localhost:4000/api/editor/texto", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          content: textContent,
-          section,
-        }),
-      });
-
+      const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
+            
+            const res = await fetch(`${API_BASE_URL}/api/editor/texto`, {
+            // ------------------------------------------------------------------
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    content: textContent,
+                    section,
+                }),
+            });
       const data = await res.json();
       console.log(data);
 

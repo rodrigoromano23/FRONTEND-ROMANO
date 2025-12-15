@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function SensoForm() {
   const [form, setForm] = useState({
     nombre: "",
@@ -34,7 +35,7 @@ export default function SensoForm() {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        "http://localhost:4000/api/senso",
+        `${API_BASE_URL}/api/senso`,
         {
           nombre: form.nombre,
           edad: Number(form.edad),
@@ -83,7 +84,7 @@ export default function SensoForm() {
   // Cargar datos de Senso para la exportación
   const fetchSensoData = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/senso");
+      const response = await axios.get(`${API_BASE_URL}/api/senso`);
       setSensoData(response.data);
       setLoading(false);
     } catch (err) {
@@ -114,7 +115,7 @@ export default function SensoForm() {
   try {
     const token = localStorage.getItem("token");
 
-    await axios.delete("http://localhost:4000/api/senso", {
+    await axios.delete(`${API_BASE_URL}/api/senso`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -145,7 +146,7 @@ const exportGraphToExcel = async () => {
     }
 
     const response = await axios.get(
-      `http://localhost:4000/api/senso/export/${selectedYear}`,
+      `${API_BASE_URL}/api/senso/export/${selectedYear}`,
       {
         headers: { Authorization: `Bearer ${token}` },  // Añadir el token en los encabezados
         responseType: "blob" // Asegurarnos de que el servidor devuelve el archivo

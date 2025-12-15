@@ -4,12 +4,13 @@
 
 import { useEffect, useState } from "react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function Juegos() {
   const [juegos, setJuegos] = useState([]);
 
   useEffect(() => {
     async function cargar() {
-      const res = await fetch("http://localhost:4000/api/juegos");
+      const res = await fetch(`${API_BASE_URL}/api/juegos`);
       const data = await res.json();
       setJuegos(data);
     }

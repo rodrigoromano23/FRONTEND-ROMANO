@@ -2,6 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
+
+
 export default function AdminJuegos() {
   const [nombre, setNombre] = useState("");
   const [caratula, setCaratula] = useState(null);
@@ -26,7 +30,7 @@ export default function AdminJuegos() {
       }
 
       // Enviamos los datos a la API
-      const response = await axios.post("http://localhost:4000/api/juegos", formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/juegos`, formData, {
         headers: {
           "Content-Type": "multipart/form-data", // Establecemos el tipo de contenido adecuado
         },

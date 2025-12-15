@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function Publicaciones() {
   const [publicaciones, setPublicaciones] = useState([]);
   const [juegos, setJuegos] = useState([]);
@@ -19,7 +19,7 @@ export default function Publicaciones() {
   useEffect(() => {
     async function cargar() {
       try {
-        const res = await fetch("http://localhost:4000/api/editor/todas");
+        const res = await fetch(`${API_BASE_URL}/api/editor/todas`);
         if (!res.ok) throw new Error(`Error al cargar: ${res.status}`);
 
         const data = await res.json();
@@ -54,7 +54,7 @@ export default function Publicaciones() {
   useEffect(() => {
     async function cargarJuegos() {
       try {
-        const res = await fetch("http://localhost:4000/api/juegos");
+        const res = await fetch(`${API_BASE_URL}/api/juegos`);
         if (!res.ok) throw new Error("Error cargando juegos");
 
         const data = await res.json();
@@ -86,7 +86,7 @@ export default function Publicaciones() {
     if (!result.isConfirmed) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/api/editor/${tipo}/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/editor/${tipo}/${id}`, {
         method: "DELETE",
       });
 
@@ -131,7 +131,7 @@ export default function Publicaciones() {
   if (!result.isConfirmed) return;
 
   try {
-    const res = await fetch(`http://localhost:4000/api/juegos/${id}`, {
+    const res = await fetch(`${API_BASE_URL}/api/juegos/${id}`, {
       method: "DELETE",
     });
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 
 export default function JuegosForm() {
   const [titulo, setTitulo] = useState("");
@@ -9,7 +10,7 @@ export default function JuegosForm() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/api/juegos", {
+      const res = await fetch(`${API_BASE_URL}/api/juegos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ titulo, imagen, link }),

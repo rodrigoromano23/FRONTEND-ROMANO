@@ -54,7 +54,7 @@ export default function AdminAuth() {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/api/auth/login", {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nombre: form.nombre.trim(), clave: form.clave }),
@@ -99,7 +99,7 @@ export default function AdminAuth() {
  }
 
  try {
-   const res = await axios.post("http://localhost:4000/api/auth/forgot", {
+   const res = await axios.post(`${API_BASE_URL}/api/auth/forgot`, {
      nombre: form.nombre,
      correo: form.correo,
      celular: form.celular,
@@ -124,7 +124,7 @@ export default function AdminAuth() {
     }
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/reset", {
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         correo: form.correo,
         nuevaClave: form.nuevaClave,
       });

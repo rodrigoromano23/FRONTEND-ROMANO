@@ -5,6 +5,7 @@
 import { useEffect, useState } from "react";
 import CarruselPublico from "../../components/Editor/CarruselPublico";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function Talleres() {
   const [publicaciones, setPublicaciones] = useState([]);
 
@@ -13,7 +14,7 @@ export default function Talleres() {
       console.log("📡 Solicitando sección: talleres");
 
       try {
-        const res = await fetch("http://localhost:4000/api/editor/section/talleres");
+        const res = await fetch(`${API_BASE_URL}/api/editor/section/talleres`);
 
         console.log("🔎 Status:", res.status);
 

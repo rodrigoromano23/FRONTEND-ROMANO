@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function EditorTexto() {
   const [editor] = useState(() => withReact(createEditor()));
   const [value, setValue] = useState([
@@ -15,7 +16,7 @@ export default function EditorTexto() {
     try {
       const textContent = JSON.stringify(value);
 
-      const res = await fetch("http://localhost:4000/api/editores", {
+      const res = await fetch(`${API_BASE_URL}/api/editores`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -207,30 +207,31 @@ export default function CanvasEditor() {
   // 3️⃣ Enviar a BACKEND
   // --------------------------------------------------------
   const sendToBackend = async (imageUrl) => {
-    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    // Corregimos la variable de entorno y el valor de fallback
+    const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com"; // 
 
-    const res = await fetch(`${apiUrl}/api/editor/canvas`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        section,
-        imageUrl,
-        // opcional
-        titulo: "",
-        descripcion:"",
-      }),
-    });
+    const res = await fetch(`${API_BASE_URL}/api/editor/canvas`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        section,
+        imageUrl,
+        // opcional
+        titulo: "",
+        descripcion: "",
+      }),
+    });
 
-    if (!res.ok) {
-    const errorText = await res.text();
-    throw new Error(`Error al publicar: ${res.status} - ${errorText}`);
-  }
+    if (!res.ok) {
+      const errorText = await res.text();
+      throw new Error(`Error al publicar: ${res.status} - ${errorText}`);
+    }
 
-    const data = await res.json();
-    console.log("📥 BACKEND:", data);
+    const data = await res.json();
+    console.log("📥 BACKEND:", data);
 
-    return data;
-  };
+    return data;
+  };
 
   // --------------------------------------------------------
   // PUBLICAR FINAL

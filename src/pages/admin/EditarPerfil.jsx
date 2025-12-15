@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function EditarPerfil() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
@@ -23,7 +24,7 @@ export default function EditarPerfil() {
         const token = localStorage.getItem("token");
         if (!token) return navigate("/admin");
 
-        const res = await axios.get("http://localhost:4000/api/auth/me", {
+        const res = await axios.get(`${API_BASE_URL}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -70,7 +71,7 @@ export default function EditarPerfil() {
 
       const token = localStorage.getItem("token");
 
-      const res = await axios.put("http://localhost:4000/api/auth/update-me", data, {
+      const res = await axios.put(`${API_BASE_URL}/api/auth/update-me`, data, {
         headers: { "Content-Type": "multipart/form-data", Authorization: `Bearer ${token}` },
       });
 

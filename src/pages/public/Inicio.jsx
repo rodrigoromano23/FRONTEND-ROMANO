@@ -30,7 +30,7 @@ export default function Inicio() {
             // ----------------------------------------------------
             const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
             
-            const res = await fetch(`${API_BASE_URL}/api/editor/inicio`);
+            const res = await fetch(`${API_BASE_URL}/api/editor/inicio`);
             // ----------------------------------------------------
 
             if (!res.ok) throw new Error(`Error al cargar: ${res.status}`);

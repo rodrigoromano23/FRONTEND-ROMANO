@@ -3,6 +3,7 @@ import CanvasEditor from "../../components/Editor/CanvasEditor";
 import EditorTexto from "../../components/Editor/EditorTexto";
 import EditorVideo from "../../components/Editor/EditorVideo";
 import EditorCarrusel from "../../components/Editor/EditorCarrusel";
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 
 export default function AdminSecciones() {
   const [showEditor, setShowEditor] = useState(false);
@@ -21,7 +22,7 @@ export default function AdminSecciones() {
 
     // Aquí podrías agregar lógica para los otros tipos (texto, video, carrusel)
     try {
-      const res = await fetch("http://localhost:4000/api/publicaciones2", {
+      const res = await fetch(`${API_BASE_URL}/api/publicaciones2`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
