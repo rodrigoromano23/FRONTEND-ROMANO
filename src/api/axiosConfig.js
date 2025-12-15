@@ -18,7 +18,7 @@ import axios from "axios";
    URL DEL BACKEND (RENDER)
 ================================ */
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE || "https://nombre-backend.onrender.com",
+  baseURL: import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com",
 });
 
 /* ================================
