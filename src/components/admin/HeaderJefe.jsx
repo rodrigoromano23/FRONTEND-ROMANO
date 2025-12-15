@@ -98,11 +98,11 @@ export default function HeaderJefe() {
       <nav className="flex gap-6 font-semibold text-gray-700">
         <p className="text-purple-700 font-bold">Jefe</p>
 
-        <button onClick={() => navigate("/admin/Empleados")}>Empleados</button>
+        <button onClick={() => navigate("/admin/empleados")}>Empleados</button>
         <button onClick={() => navigate("/admin/secciones")}>Secciones</button>
         <button onClick={() => navigate("/admin/inscriptos")}>Inscriptos</button>
         <button onClick={() => navigate("/admin/juegos")}>Juegos</button>
-        <button onClick={() => navigate("/admin/Publicaciones")}>
+        <button onClick={() => navigate("/admin/publicaciones")}>
           Publicaciones
         </button>
       </nav>

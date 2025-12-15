@@ -59,7 +59,7 @@ export default function AppRouter() {
       <Route element={<AdminLayout />}>
         
         <Route
-          path="dashboard"
+          path="/admin/dashboard"
           element={
             <ProtectedRoute>
               <AdminDashboard />
@@ -68,7 +68,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="secciones"
+          path="/admin/secciones"
           element={
             <ProtectedRoute>
               <AdminSecciones />
@@ -77,7 +77,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="juegos"
+          path="/admin/juegos"
           element={
             <ProtectedRoute>
               <AdminJuegos />
@@ -86,7 +86,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="empleados"
+          path="/admin/empleados"
           element={
             <ProtectedRoute>
               <Empleados />
@@ -95,7 +95,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="editar-perfil"
+          path="/admin/editar-perfil"
           element={
             <ProtectedRoute>
               <EditarPerfil />
@@ -104,7 +104,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="inscriptos"
+          path="/admin/inscriptos"
           element={
             <ProtectedRoute>
               <Inscriptos />
@@ -113,7 +113,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="publicaciones"
+          path="/admin/publicaciones"
           element={
             <ProtectedRoute>
               <Publicaciones />
@@ -122,7 +122,7 @@ export default function AppRouter() {
         />
 
         <Route
-          path="SensoForm"
+          path="/admin/SensoForm"
           element={
             <ProtectedRoute>
               <SensoForm />

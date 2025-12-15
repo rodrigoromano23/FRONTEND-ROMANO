@@ -45,7 +45,7 @@ export default function HeaderEmpleados() {
         <button onClick={() => navigate("/admin/inscriptos")} className="hover:text-purple-600 transition">Inscriptos</button>
         <button onClick={() => navigate("/admin/juegos")} className="hover:text-purple-600 transition">Juegos</button>
         <button onClick={() => navigate("/admin/publicaciones")} className="hover:text-purple-600 transition">Publicaciones</button>
-        <button onClick={() => navigate("/admin/sensoForm")} className="hover:text-purple-600 transition">Censo</button>
+        <button onClick={() => navigate("/admin/SensoForm")} className="hover:text-purple-600 transition">Censo</button>
       </nav>
 
       {/* DERECHA */}
