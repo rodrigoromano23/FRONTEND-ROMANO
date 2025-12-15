@@ -10,6 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function AdminAuth() {
   const navigate = useNavigate();
   const [modo, setModo] = useState("");

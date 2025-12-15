@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../../services/api";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
 export default function AdminForgot() {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
