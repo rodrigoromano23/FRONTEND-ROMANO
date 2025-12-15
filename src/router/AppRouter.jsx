@@ -1,12 +1,21 @@
-/* IMPORTS NECESARIOS DE COMPONENTES */
 import { Routes, Route } from "react-router-dom";
 
-/* LAYOUTS */
-// Asume que estos existen en tu proyecto
-import PublicLayout from "../layout/PublicLayout"; 
-import AdminLayout from "../layout/AdminLayout"; 
+/* LAYOUT */
+import PublicLayout from "../layout/PublicLayout";
+import AdminLayout from "../layout/AdminLayout";
 
-/* AUTH COMPONENTS */
+/* PUBLIC PAGES */
+//  
+// La carpeta de Inicio debe ser 'public'.
+import Inicio from "../pages/public/Inicio";
+import Formulario from "../pages/public/Formulario";
+import Juegos from "../pages/public/Juegos";
+import ProyectosFuturos from "../pages/public/ProyectosFuturos";
+import QuienesSomos from "../pages/public/QuienesSomos";
+import Salidas from "../pages/public/Salidas";
+import Talleres from "../pages/public/Talleres";
+
+/* AUTH */
 import AdminAuth from "../pages/admin/AdminAuth";
 import ProtectedRoute from "../components/admin/ProtectedRoute";
 import AdminForgot from "../pages/admin/AdminForgot";
@@ -14,26 +23,19 @@ import AdminForgot from "../pages/admin/AdminForgot";
 /* ADMIN PRIVATE PAGES */
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminSecciones from "../pages/admin/AdminSecciones";
+import AdminTalleres from "../pages/admin/AdminTalleres";
 import AdminJuegos from "../pages/admin/AdminJuegos";
-import CargarContenido from "../pages/admin/CargarContenido"; 
-import CargarJuego from "../pages/admin/CargarJuego"; 
+import CargarContenido from "../pages/admin/CargarContenido";
+import CargarJuego from "../pages/admin/CargarJuego";
 import Empleados from "../pages/admin/Empleados";
 import Inscriptos from "../pages/admin/Inscriptos";
 import EditarPerfil from "../pages/admin/EditarPerfil";
 import Publicaciones from "../pages/admin/Publicaciones"; 
 import SensoForm from "../pages/admin/SensoForm";
 
-/* PUBLIC PAGES */
-// Asumí que estos existen en tu proyecto
-import Inicio from "../pages/Inicio";
-import Formulario from "../pages/Formulario";
-import Juegos from "../pages/Juegos";
-import ProyectosFuturos from "../pages/ProyectosFuturos";
-import QuienesSomos from "../pages/QuienesSomos";
-import Salidas from "../pages/Salidas";
-import Talleres from "../pages/Talleres";
-
 /* ERROR */
+// 
+// Asumo que NotFound está directamente en src/pages/
 import NotFound from "../pages/NotFound";
 
 
