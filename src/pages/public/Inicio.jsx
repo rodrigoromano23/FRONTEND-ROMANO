@@ -25,22 +25,29 @@ export default function Inicio() {
   useEffect(() => {
     async function cargar() {
       try {
-        const res = await fetch("http://localhost:4000/api/editor/inicio");
-        if (!res.ok) throw new Error(`Error al cargar: ${res.status}`);
-        const data = await res.json();
+        // ----------------------------------------------------
+            // 💡 CORRECCIÓN CLAVE: Usar variable de entorno de Render
+            // ----------------------------------------------------
+            const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
+            
+            const res = await fetch(`${API_BASE_URL}/api/editor/inicio`);
+            // ----------------------------------------------------
 
-        setCanvasActual(data.canvasActual || null);
-        setEditorActual(data.editorActual || null);
-      } catch (err) {
-        console.error(err);
-        setError("No se pudieron cargar los datos de inicio.");
-      } finally {
-        setLoading(false);
-      }
-    }
+            if (!res.ok) throw new Error(`Error al cargar: ${res.status}`);
+            const data = await res.json();
 
-    cargar();
-  }, []);
+            setCanvasActual(data.canvasActual || null);
+            setEditorActual(data.editorActual || null);
+        } catch (err) {
+            console.error(err);
+            setError("No se pudieron cargar los datos de inicio.");
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    cargar();
+  }, []);
 
   if (loading) {
     return (
