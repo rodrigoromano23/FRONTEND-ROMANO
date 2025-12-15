@@ -1,12 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 
-/* LAYOUT */
+/* PUBLIC LAYOUT */
 import PublicLayout from "../layout/PublicLayout";
-import AdminLayout from "../layout/AdminLayout";
 
 /* PUBLIC PAGES */
-//  
-// La carpeta de Inicio debe ser 'public'.
 import Inicio from "../pages/public/Inicio";
 import Formulario from "../pages/public/Formulario";
 import Juegos from "../pages/public/Juegos";
@@ -14,6 +11,9 @@ import ProyectosFuturos from "../pages/public/ProyectosFuturos";
 import QuienesSomos from "../pages/public/QuienesSomos";
 import Salidas from "../pages/public/Salidas";
 import Talleres from "../pages/public/Talleres";
+
+/* ADMIN LAYOUT */
+import AdminLayout from "../layout/AdminLayout";
 
 /* AUTH */
 import AdminAuth from "../pages/admin/AdminAuth";
@@ -30,20 +30,16 @@ import CargarJuego from "../pages/admin/CargarJuego";
 import Empleados from "../pages/admin/Empleados";
 import Inscriptos from "../pages/admin/Inscriptos";
 import EditarPerfil from "../pages/admin/EditarPerfil";
-import Publicaciones from "../pages/admin/Publicaciones"; 
+import Publicaciones from "../pages/admin/Publicaciones"; // ✔ FALTABA ESTE IMPORT
 import SensoForm from "../pages/admin/SensoForm";
 
 /* ERROR */
-// 
-// Asumo que NotFound está directamente en src/pages/
 import NotFound from "../pages/NotFound";
-
 
 export default function AppRouter() {
   return (
     <Routes>
-      
-      {/* ---------------------- RUTAS PÚBLICAS ---------------------- */}
+      {/* ---------------------- PUBLIC ROUTES ---------------------- */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<Inicio />} />
         <Route path="/formulario" element={<Formulario />} />
@@ -54,38 +50,89 @@ export default function AppRouter() {
         <Route path="/talleres" element={<Talleres />} />
       </Route>
 
-      {/* ---------------------- ADMIN – ACCESO PÚBLICO (Login y Recuperación) ---------------------- */}
-      {/* Las rutas de login y recuperación */}
+      {/* ---------------------- ADMIN – PUBLIC ACCESS ---------------------- */}
       <Route path="/admin" element={<AdminAuth />} />
       <Route path="/admin/forgot" element={<AdminForgot />} />
-      
-      {/* ---------------------- ADMIN – RUTAS PRIVADAS (Con Layout y Protección) ---------------------- */}
-      {/*  Route que usa el AdminLayout. */}
-      {/* Las rutas internas ahora son relativas . */}
-      <Route path="/admin" element={<AdminLayout />}>
-        
-        {/* DASHBOARD (Ruta por defecto al iniciar sesión si el login redirige a /admin) */}
-        <Route index element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+     
 
-        {/* RUTAS DEL HEADER DE EMPLEADOS / JEFE */}
-        <Route path="dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-        <Route path="secciones" element={<ProtectedRoute><AdminSecciones /></ProtectedRoute>} />
-        <Route path="juegos" element={<ProtectedRoute><AdminJuegos /></ProtectedRoute>} />
-        <Route path="empleados" element={<ProtectedRoute><Empleados /></ProtectedRoute>} />
-        <Route path="inscriptos" element={<ProtectedRoute><Inscriptos /></ProtectedRoute>} />
-        <Route path="publicaciones" element={<ProtectedRoute><Publicaciones /></ProtectedRoute>} />
-        <Route path="SensoForm" element={<ProtectedRoute><SensoForm /></ProtectedRoute>} />
+      {/* ---------------------- ADMIN – PRIVATE ROUTES ---------------------- */}
+      <Route element={<AdminLayout />}>
         
-        {/* RUTAS DE ACCIONES ESPECÍFICAS */}
-        <Route path="editar-perfil" element={<ProtectedRoute><EditarPerfil /></ProtectedRoute>} />
-        <Route path="cargar-contenido" element={<ProtectedRoute><CargarContenido /></ProtectedRoute>} />
-        <Route path="cargar-juego" element={<ProtectedRoute><CargarJuego /></ProtectedRoute>} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
+        <Route
+          path="/admin/secciones"
+          element={
+            <ProtectedRoute>
+              <AdminSecciones />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/juegos"
+          element={
+            <ProtectedRoute>
+              <AdminJuegos />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/empleados"
+          element={
+            <ProtectedRoute>
+              <Empleados />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/editar-perfil"
+          element={
+            <ProtectedRoute>
+              <EditarPerfil />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/inscriptos"
+          element={
+            <ProtectedRoute>
+              <Inscriptos />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/publicaciones"
+          element={
+            <ProtectedRoute>
+              <Publicaciones />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/SensoForm"
+          element={
+            <ProtectedRoute>
+              <SensoForm />
+            </ProtectedRoute>
+          }
+        />
       </Route>
 
       {/* ---------------------- ERROR ---------------------- */}
       <Route path="*" element={<NotFound />} />
-      
     </Routes>
   );
 }
