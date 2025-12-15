@@ -39,26 +39,32 @@ import NotFound from "../pages/NotFound";
 export default function AppRouter() {
   return (
     <Routes>
-      {/* ---------------------- PUBLIC ROUTES ---------------------- */}
-      <Route element={<PublicLayout />}>
-        {/* ... rutas públicas ... */}
-      </Route>
+      {/* ---------------------- PUBLIC ROUTES ---------------------- */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/formulario" element={<Formulario />} />
+        <Route path="/juegos" element={<Juegos />} />
+        <Route path="/proyectos-futuros" element={<ProyectosFuturos />} />
+        <Route path="/quienes-somos" element={<QuienesSomos />} />
+        <Route path="/salidas" element={<Salidas />} />
+        <Route path="/talleres" element={<Talleres />} />
+      </Route>
 
-      {/* ---------------------- ADMIN – PUBLIC ACCESS ---------------------- */}
-      <Route path="/admin" element={<AdminAuth />} />
-      <Route path="/admin/forgot" element={<AdminForgot />} />
-     
+      {/* ---------------------- ADMIN – PUBLIC ACCESS ---------------------- */}
+      <Route path="/admin" element={<AdminAuth />} />
+      <Route path="/admin/forgot" element={<AdminForgot />} />
+     
 
-      {/* ---------------------- ADMIN – PRIVATE ROUTES (¡CORRECCIÓN VITAL!) ---------------------- */}
-      <Route path="/admin" element={<AdminLayout />}> {/* ⬅️ EL LAYOUT Y EL PATH BASE VAN JUNTOS */}
-        
-        <Route
+      {/* ---------------------- ADMIN – PRIVATE ROUTES ---------------------- */}
+      <Route />}>
+        
+        <Route
           index // Opcional: para que /admin cargue el dashboard por defecto
           element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
         />
-        
+        
         <Route
-          path="dashboard" // ⬅️ Rutas Relativas (sin /admin/)
+          path="dashboard" // ⬅️ Rutas Relativas
           element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
         />
 
@@ -93,16 +99,15 @@ export default function AppRouter() {
         />
 
         <Route
-          path="sensoform" // ⬅️ Rutas Relativas (y en minúsculas)
+          path="sensoform" // ⬅️ Cambiado a minúsculas para consistencia
           element={<ProtectedRoute><SensoForm /></ProtectedRoute>}
         />
-        
-        {/* Aquí irían las rutas de Cargar Contenido/Juego si fueran necesarias */}
 
-      </Route> {/* ⬅️ Cierre del Route Padre */}
+        {/* Añadir Cargar Contenido/Juego si tienen un path en el header */}
+      </Route>
 
-      {/* ---------------------- ERROR ---------------------- */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
+      {/* ---------------------- ERROR ---------------------- */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+  );
 }
