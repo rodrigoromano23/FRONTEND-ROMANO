@@ -1,12 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 
 export default function ProtectedRoute({ children }) {
-  const { isAuthenticated, loading } = useAuth();
+  const token = localStorage.getItem("token");
 
-  if (loading) return <p>Cargando...</p>;
+  console.log("ProtectedRoute token:", token);
 
-  if (!isAuthenticated) {
+  if (!token) {
     return <Navigate to="/admin/dashboard" replace />;
   }
 

@@ -56,55 +56,80 @@ export default function AppRouter() {
      
 
       {/* ---------------------- ADMIN – PRIVATE ROUTES ---------------------- */}
-      <Route />}>
+      <Route element={<AdminLayout />}>
         
         <Route
-          index // Opcional: para que /admin cargue el dashboard por defecto
-          element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
-        />
-        
-        <Route
-          path="dashboard" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}
-        />
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="secciones" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><AdminSecciones /></ProtectedRoute>}
-        />
+        <Route
+          path="secciones"
+          element={
+            <ProtectedRoute>
+              <AdminSecciones />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="juegos" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><AdminJuegos /></ProtectedRoute>}
-        />
+        <Route
+          path="juegos"
+          element={
+            <ProtectedRoute>
+              <AdminJuegos />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="empleados" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><Empleados /></ProtectedRoute>}
-        />
+        <Route
+          path="empleados"
+          element={
+            <ProtectedRoute>
+              <Empleados />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="editar-perfil" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><EditarPerfil /></ProtectedRoute>}
-        />
+        <Route
+          path="editar-perfil"
+          element={
+            <ProtectedRoute>
+              <EditarPerfil />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="inscriptos" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><Inscriptos /></ProtectedRoute>}
-        />
+        <Route
+          path="inscriptos"
+          element={
+            <ProtectedRoute>
+              <Inscriptos />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="publicaciones" // ⬅️ Rutas Relativas
-          element={<ProtectedRoute><Publicaciones /></ProtectedRoute>}
-        />
+        <Route
+          path="publicaciones"
+          element={
+            <ProtectedRoute>
+              <Publicaciones />
+            </ProtectedRoute>
+          }
+        />
 
-        <Route
-          path="sensoform" // ⬅️ Cambiado a minúsculas para consistencia
-          element={<ProtectedRoute><SensoForm /></ProtectedRoute>}
-        />
-
-        {/* Añadir Cargar Contenido/Juego si tienen un path en el header */}
-      </Route>
+        <Route
+          path="SensoForm"
+          element={
+            <ProtectedRoute>
+              <SensoForm />
+            </ProtectedRoute>
+          }
+        />
+      </Route>
 
       {/* ---------------------- ERROR ---------------------- */}
       <Route path="*" element={<NotFound />} />
