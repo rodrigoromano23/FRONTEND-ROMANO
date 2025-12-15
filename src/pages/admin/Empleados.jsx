@@ -109,8 +109,7 @@ export default function Empleados() {
             <div className="flex flex-col items-center">
               <img
                 src={
-                  selected.fotoUrl ? `${API_BASE_URL}/uploads/${selected.fotoUrl.split('/').pop()}` // Asume que el backend envia la URL completa, pero toma solo el nombre
-                        : "/default-avatar.png"
+                  selected.fotoUrl || "/default-avatar.png"
                 }
                 alt={selected.nombre}
                 className="w-44 h-44 object-cover rounded-xl border shadow-md"
