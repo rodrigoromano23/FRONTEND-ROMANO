@@ -42,7 +42,7 @@ export default function SensoFormModal() {
       try {
         const API_BASE_URL = import.meta.env.VITE_API_BASE || "https://backend-romano.onrender.com";
         const response = await axios.get(`${API_BASE_URL}/api/senso`);
-        const data = res.data || [];
+        const data = response.data || [];
 
         const fisicasMap = {};
         const neuroMap = {};
