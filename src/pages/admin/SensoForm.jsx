@@ -169,6 +169,79 @@ const yearsAvailable = [...new Set(sensoData.map((d) => d.anio))];
 
 if (loading) return <div>Cargando...</div>;
 
+//========================================================================
+//========================================================================
+
+const exportarExcelCenso = () => {
+  if (!sensoData.length) {
+    Swal.fire("Atención", "No hay datos para exportar", "warning");
+    return;
+  }
+
+  const filas = [];
+  const dataFiltrada = selectedYear
+    ? sensoData.filter(d => String(d.anio) === String(selectedYear))
+    : sensoData;
+
+  const fisicasMap = {};
+  const neuroMap = {};
+
+  dataFiltrada.forEach(p => {
+    if (p.discapacidadFisica?.tipo) {
+      fisicasMap[p.discapacidadFisica.tipo] =
+        (fisicasMap[p.discapacidadFisica.tipo] || 0) + 1;
+    }
+    if (p.discapacidadNeurologica?.tipo) {
+      neuroMap[p.discapacidadNeurologica.tipo] =
+        (neuroMap[p.discapacidadNeurologica.tipo] || 0) + 1;
+    }
+  });
+
+  const totalFisicas = Object.values(fisicasMap).reduce((a, b) => a + b, 0);
+  const totalNeuro = Object.values(neuroMap).reduce((a, b) => a + b, 0);
+  const totalGeneral = totalFisicas + totalNeuro;
+
+  Object.entries(fisicasMap).forEach(([name, value]) => {
+    filas.push({
+      Año: selectedYear,
+      Tipo: "Física",
+      Discapacidad: name,
+      Cantidad: value,
+      Porcentaje: ((value / totalGeneral) * 100).toFixed(2) + "%"
+    });
+  });
+
+  Object.entries(neuroMap).forEach(([name, value]) => {
+    filas.push({
+      Año: selectedYear,
+      Tipo: "Neurológica",
+      Discapacidad: name,
+      Cantidad: value,
+      Porcentaje: ((value / totalGeneral) * 100).toFixed(2) + "%"
+    });
+  });
+
+  const sheetDetalle = XLSX.utils.json_to_sheet(filas);
+
+  const sheetResumen = XLSX.utils.json_to_sheet([
+    { Concepto: "Total Discapacidades Físicas", Valor: totalFisicas },
+    { Concepto: "Total Discapacidades Neurológicas", Valor: totalNeuro },
+    { Concepto: "TOTAL GENERAL", Valor: totalGeneral }
+  ]);
+
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, sheetDetalle, "Detalle");
+  XLSX.utils.book_append_sheet(wb, sheetResumen, "Resumen");
+
+  XLSX.writeFile(
+    wb,
+    `Censo_Discapacidades_${selectedYear || "todos"}.xlsx`
+  );
+};
+//=========================================================================
+//=========================================================================
+
+
   return (
     <div className="max-w-5xl mx-auto p-6 bg-white shadow-lg rounded-lg">
       <h1 className="text-3xl font-bold mb-6 text-purple-700">Carga de datos Censo</h1>
@@ -346,6 +419,13 @@ if (loading) return <div>Cargando...</div>;
             className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
           >
             Exportar Gráfico para {selectedYear}
+          </button>
+
+          <button
+            onClick={exportarExcelCenso}
+            className="bg-emerald-600 text-white py-2 px-6 rounded-lg hover:bg-emerald-700 ml-3"
+          >
+            📊 Exportar Datos del Censo (Excel)
           </button>
 
 
