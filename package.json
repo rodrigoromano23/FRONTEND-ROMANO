@@ -27,6 +27,7 @@
     "react-design-editor": "^0.0.76",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.68.0",
+    "react-icons": "^5.5.0",
     "react-konva": "^19.2.1",
     "react-router-dom": "^7.9.6",
     "react-toastify": "^11.0.5",
